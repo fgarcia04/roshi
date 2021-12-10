@@ -3,28 +3,28 @@
         <div class="flex flex-col overflow-y-auto md:flex-row">
             <div class="h-32 md:h-auto md:w-1/2">
                 <img aria-hidden="true" class="object-cover w-full h-full dark:hidden"
-                    src="{{ asset('img/login-office.jpeg') }}" alt="Office" />
+                    src="{{ asset('img/forgot-password-office.jpeg') }}" alt="Office" />
                 <img aria-hidden="true" class="hidden object-cover w-full h-full dark:block"
-                    src="{{ asset('img/login-office-dark.jpeg') }}" alt="Office" />
+                    src="{{ asset('img/forgot-password-office-dark.jpeg') }}" alt="Office" />
             </div>
             <div class="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
                 <div class="w-full">
                     <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                        ¡Bienvenido!
+                        {{ __('Forgot Password') }}
                     </h1>
-                    <x-form action="login">
+                    <x-form action="send">
+                        <x-alert-success />
                         <x-input type="text" label="E-Mail Address" placeholder="email@address.com" name="email" />
-                        <x-input type="password" label="Password" placeholder="********" name="password" />
                         <button type="submit"
                             class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-orange-600 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
-                            {{ __('Login') }}
+                            {{ __('Recover Password') }}
                         </button>
                     </x-form>
                     <hr class="my-8" />
                     <p>
                         <a class="text-sm font-medium text-orange-600 dark:text-orange-400 hover:underline"
-                            href="{{ route('password.forgot') }}">
-                            {{ __('Forgot Your Password?') }}
+                            href="{{ route('login') }}">
+                            {{ __('Back') }}
                         </a>
                     </p>
                 </div>
