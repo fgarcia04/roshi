@@ -29,6 +29,7 @@ class PasswordForgot extends Component
 
         if ($status == Password::RESET_LINK_SENT) {
             $this->status = __($status);
+            $this->reset('email');
         } else {
             $this->addError('email', __($status));
         }
