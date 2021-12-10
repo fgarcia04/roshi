@@ -13,7 +13,7 @@
                         {{ __('Forgot Password') }}
                     </h1>
                     <x-form action="send">
-                        <x-alert-success />
+                        <x-alert-success status="{{ $status }}" />
                         <x-input type="text" label="E-Mail Address" placeholder="email@address.com" name="email" />
                         <button type="submit"
                             class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-orange-600 border border-transparent rounded-lg active:bg-orange-600 hover:bg-orange-700 focus:outline-none focus:shadow-outline-orange">
