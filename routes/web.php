@@ -31,7 +31,13 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::post('/logout', Logout::class)->name('logout')->middleware('auth');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'customer'], 'prefix' => 'customer'], function () {
+    Route::get('/home', Home::class)->name('customer.home');
+    Route::get('/users', UsersMain::class)->name('customer.users');
+    Route::get('/customers', CustomersMain::class)->name('customer.customers');
+});
+
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
     Route::get('/home', Home::class)->name('admin.home');
     Route::get('/users', UsersMain::class)->name('admin.users');
     Route::get('/customers', CustomersMain::class)->name('admin.customers');

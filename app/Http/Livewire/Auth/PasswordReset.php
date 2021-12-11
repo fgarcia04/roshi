@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -51,7 +50,11 @@ class PasswordReset extends Component
         );
 
         if ($status == Password::PASSWORD_RESET) {
-            return redirect(RouteServiceProvider::HOME);
+            if (Auth::user()->isAdmin()) {
+                return redirect(route('admin.home'));
+            } else if (Auth::user()->isCustomer()) {
+                return redirect(route('customer.home'));
+            }
         } else {
             $this->addError('email', __($status));
         }

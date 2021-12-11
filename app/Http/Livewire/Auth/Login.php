@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
@@ -31,7 +30,11 @@ class Login extends Component
         $this->validate();
 
         if ($this->ensureIsNotRateLimited() && $this->authenticate()) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            if (Auth::user()->isAdmin()) {
+                return redirect(route('admin.home'));
+            } else if (Auth::user()->isCustomer()) {
+                return redirect(route('customer.home'));
+            }
         }
     }
 
