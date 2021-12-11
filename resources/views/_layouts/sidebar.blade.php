@@ -11,7 +11,7 @@
                         class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ strpos(Route::currentRouteName(), $menu->slug) === 0 ? 'text-orange-400' : '' }}"
                         @click="openSubMenu = ! openSubMenu" aria-haspopup="true" openSubmenu="true">
                         <span class="inline-flex items-center">
-                            {!! file_get_contents(public_path('img/' . $menu->icon . '.svg')) !!}
+                            <x-dynamic-component :component="'icons.'.$menu->icon" />
                             <span class="ml-4">{{ $menu->name }}</span>
                         </span>
                         <svg class="w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
@@ -41,7 +41,7 @@
                 <li class="relative px-6 py-3">
                     <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::currentRouteName() === $menu->slug ? 'text-orange-400' : '' }}"
                         href="{{ route($menu->slug) }}">
-                        {!! file_get_contents(public_path('img/' . $menu->icon . '.svg')) !!}
+                        <x-dynamic-component :component="'icons.'.$menu->icon" />
                         <span class="ml-4">{{ $menu->name }}</span>
                     </a>
                 </li>
