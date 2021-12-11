@@ -1,3 +1,8 @@
+function sidebar() {
+  console.log(algo);
+  return [];
+}
+
 function data() {
   function getThemeFromLocalStorage() {
     // if user already changed the theme, use it
@@ -42,10 +47,6 @@ function data() {
     },
     closeProfileMenu() {
       this.isProfileMenuOpen = false
-    },
-    isPagesMenuOpen: false,
-    togglePagesMenu() {
-      this.isPagesMenuOpen = !this.isPagesMenuOpen
     },
     // Modal
     isModalOpen: false,

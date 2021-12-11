@@ -5,10 +5,11 @@
     <ul class="mt-6">
         @foreach ($menus as $key => $menu)
             @if ($menu->subMenus->count())
-                <li class="relative px-6 py-3">
+                <li class="relative px-6 py-3"
+                    x-data="{ openSubMenu: {{ strpos(Route::currentRouteName(), $menu->slug) === 0 ? 'true' : 'false' }} }">
                     <button
-                        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                        @click="togglePagesMenu" aria-haspopup="true">
+                        class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ strpos(Route::currentRouteName(), $menu->slug) === 0 ? 'text-orange-400' : '' }}"
+                        @click="openSubMenu = ! openSubMenu" aria-haspopup="true" openSubmenu="true">
                         <span class="inline-flex items-center">
                             {!! file_get_contents(public_path('img/' . $menu->icon . '.svg')) !!}
                             <span class="ml-4">{{ $menu->name }}</span>
@@ -19,7 +20,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <template x-if="isPagesMenuOpen">
+                    <template x-if="openSubMenu">
                         <ul x-transition:enter="transition-all ease-in-out duration-300"
                             x-transition:enter-start="opacity-25 max-h-0" x-transition:enter-end="opacity-100 max-h-xl"
                             x-transition:leave="transition-all ease-in-out duration-300"
@@ -28,7 +29,7 @@
                             aria-label="submenu">
                             @foreach ($menu->subMenus as $subMenu)
                                 <li
-                                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200">
+                                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 {{ Route::currentRouteName() === $subMenu->slug ? 'text-orange-300' : '' }}">
                                     <a class="w-full"
                                         href="{{ route($subMenu->slug) }}">{{ $subMenu->name }}</a>
                                 </li>
