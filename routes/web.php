@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Livewire\Admin\Home;
+use App\Http\Livewire\Admin\Users\Main as UsersMain;
+use App\Http\Livewire\Admin\Customers\Main as CustomersMain;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Logout;
 use App\Http\Livewire\Auth\PasswordForgot;
@@ -31,6 +33,6 @@ Route::post('/logout', Logout::class)->name('logout')->middleware('auth');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', Home::class)->name('admin.home');
-    Route::get('/users', Home::class)->name('admin.users');
-    Route::get('/customers', Home::class)->name('admin.customers');
+    Route::get('/users', UsersMain::class)->name('admin.users');
+    Route::get('/customers', CustomersMain::class)->name('admin.customers');
 });
