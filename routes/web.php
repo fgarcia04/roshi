@@ -31,4 +31,5 @@ Route::post('/logout', Logout::class)->name('logout')->middleware('auth');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', Home::class)->name('admin.home');
+    Route::get('/users', Home::class)->name('admin.users');
 });

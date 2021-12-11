@@ -20,5 +20,11 @@ class MenusSeeder extends Seeder
             'slug' => 'admin.home',
             'order' => 0,
         ]);
+        Menu::create([
+            'name' => 'Usuarios',
+            'icon' => 'user',
+            'slug' => 'admin.users',
+            'order' => 0,
+        ]);
     }
 }
