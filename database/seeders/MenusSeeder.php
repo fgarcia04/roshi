@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Menu;
+use App\Models\SubMenu;
 use Illuminate\Database\Seeder;
 
 class MenusSeeder extends Seeder
@@ -24,7 +25,13 @@ class MenusSeeder extends Seeder
             'name' => 'Usuarios',
             'icon' => 'user',
             'slug' => 'admin.users',
-            'order' => 0,
+            'order' => 1,
+        ]);
+        Menu::create([
+            'name' => 'Clientes',
+            'icon' => 'customers',
+            'slug' => 'admin.customers',
+            'order' => 2,
         ]);
     }
 }
