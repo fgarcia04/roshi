@@ -3,6 +3,7 @@
 use App\Http\Livewire\Admin\Home;
 use App\Http\Livewire\Admin\Users\Main as UsersMain;
 use App\Http\Livewire\Admin\Customers\Main as CustomersMain;
+use App\Http\Livewire\Customer\Main as CustomerMain;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Logout;
 use App\Http\Livewire\Auth\PasswordForgot;
@@ -32,9 +33,7 @@ Route::group(['middleware' => ['guest']], function () {
 Route::post('/logout', Logout::class)->name('logout')->middleware('auth');
 
 Route::group(['middleware' => ['auth', 'customer'], 'prefix' => 'customer'], function () {
-    Route::get('/home', Home::class)->name('customer.home');
-    Route::get('/users', UsersMain::class)->name('customer.users');
-    Route::get('/customers', CustomersMain::class)->name('customer.customers');
+    Route::get('/home', CustomerMain::class)->name('customer.home');
 });
 
 Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
